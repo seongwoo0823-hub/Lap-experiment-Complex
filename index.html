@@ -1665,6 +1665,75 @@ svg.mo-enter .i3-stage{animation:moFade .5s ease-out both}
 @media (prefers-reduced-motion:reduce){svg[data-mo] *{animation:none !important}}
 @media print{.mo-ctl{display:none}svg[data-mo] *{animation:none !important}svg[data-mo] .mo-fall,svg[data-mo] .mo-sweep{opacity:0}}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PX-CSS-BEGIN */
+/* ===== PIXEL ART MODE ===== */
+:root{--px-bg:#EEF2F8;--px-bg2:#E2E8F2}
+:root[data-theme="dark"]{--px-bg:#1A2030;--px-bg2:#141927}
+.px-mode svg.px-t{background-size:100% 100%;background-repeat:no-repeat;image-rendering:crisp-edges;image-rendering:pixelated}
+.px-mode svg.px-t:not(.px-on):not(.px-fail)>*{opacity:0}
+.px-mode svg.px-on *{visibility:hidden}
+.px-mode svg.px-on text,.px-mode svg.px-on text *{visibility:visible}
+.px-mode :is(.step .fig,.xcard .thumb,.tcard .tv,.sh-grid .vis,.hero-art,.xhead .art){background:var(--px-bg) !important}
+.px-mode svg[data-mo] *,.px-mode svg[data-mo]{animation:none !important}
+.px-mode .mo-ctl{display:none !important}
+@media print{.px-mode svg.px-on *{visibility:visible !important}.px-mode svg.px-t{background:none !important}.px-mode svg.px-t>*{opacity:1 !important}}
+/* ===== RESPONSIVE: 휴대폰 · 태블릿 · PC ===== */
+@media (min-width:600px) and (max-width:860px){
+ .xhead{grid-template-columns:minmax(0,1fr) minmax(230px,40%)}
+ .xhead .art{order:0}
+}
+@media (max-width:599px){
+ .xhead .art{max-width:460px;width:100%;margin-inline:auto}
+}
+@media (max-width:560px){
+ .tgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .tcard{padding:8px;border-radius:14px}
+ .tcard b{font-size:14px;line-height:1.3}
+ .tcard small{font-size:11px}
+ .grid{grid-template-columns:1fr;gap:12px}
+ #app .filters:not(:has(input,select)){flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:-6px;padding:2px 6px;scroll-snap-type:x proximity;mask-image:linear-gradient(90deg,transparent 0,#000 8px,#000 calc(100% - 18px),transparent)}
+ #app .filters:not(:has(input,select))::-webkit-scrollbar{display:none}
+ #app .filters:not(:has(input,select))>*{flex:0 0 auto;scroll-snap-align:start}
+ .chipbtn{padding:7px 12px;font-size:13px}
+}
+@media (min-width:1600px){
+ .tgrid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+}
+/* 즐겨찾기 픽토그램 */
+.favmark{display:inline-flex;align-items:center;vertical-align:-2px;margin-right:3px}
+.favmark .ic{width:14px;height:14px;fill:currentColor;stroke:currentColor;stroke-width:1.2}
+/* 첫 화면 4과학 픽셀 타일 */
+.px-hero{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.px-hero .pxh-t{margin:0;position:relative;border-radius:12px;background:var(--px-bg);border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
+.px-hero .pxh-t svg{width:100% !important;height:auto !important;aspect-ratio:1/1;display:block}
+.px-hero figcaption{order:2;display:flex;align-items:center;gap:6px;padding:6px 8px;background:var(--bg-elevated);border-top:1px solid var(--line);min-width:0}
+.px-hero figcaption b{font-size:11.5px;font-weight:800;padding:2px 7px;border-radius:6px;color:#fff;flex:none}
+.px-hero figcaption small{font-size:10.5px;color:var(--ink-2);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pxh-chem b{background:var(--chem,#0071E3)}.pxh-bio b{background:var(--bio,#008060)}.pxh-phys b{background:var(--phys,#8E44AD)}.pxh-earth b{background:var(--earth,#C27C0E)}
+.hero-art:has(.px-hero){padding:10px}
+@media (max-width:820px){.px-hero{grid-template-columns:repeat(4,1fr)}.hero-art:has(.px-hero){max-width:none !important}.px-hero figcaption small{display:none}}
+@media (max-width:480px){.px-hero{gap:5px}.px-hero figcaption{padding:4px;justify-content:center}.px-hero figcaption b{font-size:10.5px;padding:2px 5px}}
+@media (max-width:640px){.sh-grid{grid-template-columns:minmax(0,1fr)}.sh-grid>*{min-width:0}.sh-grid .vis{max-width:none}}
+/* PX-CSS-END */
 </style>
 </head>
 <body>
@@ -1711,7 +1780,7 @@ svg.mo-enter .i3-stage{animation:moFade .5s ease-out both}
 <div class="toast glass" id="toast"></div>
 <script>
 /* ---------- pictogram icons ---------- */
-const IC={
+const IC={star:'<path d="M12 3.6l2.55 5.3 5.8.8-4.2 4.05 1 5.75L12 16.8l-5.15 2.7 1-5.75L3.65 9.7l5.8-.8z"/>',
 home:'<path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
 book:'<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19v-3"/><path d="M9 7h6"/>',
 cap:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.4 2.7 3 6 3s6-1.6 6-3v-5"/><path d="M22 9v5"/>',
@@ -1757,6 +1826,11 @@ save:'<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3"/><path d="M8 21v-7h8v7"/
 plus:'<path d="M12 5v14"/><path d="M5 12h14"/>',
 };
 const ic=(n,c='')=>`<svg class="ic ${c}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]||''}</svg>`;
+/* 용액의 불투명도: 용액은 빛을 흡수해 색을 띨 뿐 투명하다. 채도(흡수 정도)가 낮을수록 투명, 무색 용액은 거의 비친다. */
+function liqOp(c){const m=String(c||'').match(/^#?([0-9a-f]{6})$/i);if(!m)return .8;const n=parseInt(m[1],16),r=n>>16,g=n>>8&255,b=n&255;const mx=Math.max(r,g,b),mn=Math.min(r,g,b),ch=(mx-mn)/255,L=(.299*r+.587*g+.114*b)/255;
+ if(L<.28)return .92; if(ch<.09&&L>.8)return .24; return Math.min(.88,.42+ch*1.15+(1-L)*.25)}
+/* 픽토그램(이모지 대신 쓰는 벡터 기호) */
+const PICTO_HEART=(cx,cy,r,c)=>`<path d="M${(+cx).toFixed(1)} ${(cy+r*.95).toFixed(1)}L${(cx-r).toFixed(1)} ${(cy-r*.05).toFixed(1)}A${(r*.5).toFixed(1)} ${(r*.5).toFixed(1)} 0 0 1 ${(+cx).toFixed(1)} ${(cy-r*.6).toFixed(1)}A${(r*.5).toFixed(1)} ${(r*.5).toFixed(1)} 0 0 1 ${(cx+r).toFixed(1)} ${(cy-r*.05).toFixed(1)}Z" fill="${c}"/>`;
 
 /* ---------- GHS pictograms (simplified) ---------- */
 const GHS={
@@ -1898,7 +1972,14 @@ SV.view=({x=230,y=100,r=56,kind='onion',lab})=>{const id='v'+(++_cid);let inner=
   if(s==='a')inner+=`<path d="M${mx-5} ${my-8}l3 4 3-4 3 4M${mx-5} ${my+8}l3-4 3 4 3-4" stroke="#A0124A" stroke-width="2" fill="none"/>`;
   if(s==='t')inner+=`<path d="M${cx+2} ${my}h24" stroke="#B38A9A" stroke-width="1.2"/><ellipse cx="${mx}" cy="${my-8}" rx="6" ry="3.5" fill="#C2185B" opacity=".6"/><ellipse cx="${mx}" cy="${my+8}" rx="6" ry="3.5" fill="#C2185B" opacity=".6"/>`})}
  else if(kind==='gram'){bgc='#FBF6F8';[[-30,-20],[-22,-14],[-28,-8],[-10,24],[-4,30],[2,20],[30,-26],[36,-18]].forEach(p=>inner+=`<circle cx="${x+p[0]}" cy="${y+p[1]}" r="4.2" fill="#5B2A9E"/>`);[[-30,20,30],[18,6,-20],[10,-30,60],[30,24,10],[-10,-2,80]].forEach(p=>inner+=`<rect x="${x+p[0]-7}" y="${y+p[1]-2.5}" width="14" height="5" rx="2.5" fill="#E26392" transform="rotate(${p[2]} ${x+p[0]} ${y+p[1]})"/>`)}
- else if(kind==='silver'){bgc='#EEF3FA';for(let i=0;i<9;i++){const a=i*40*Math.PI/180;inner+=`<path d="M${x} ${y}L${x+Math.cos(a)*r*.9} ${y+Math.sin(a)*r*.9}" stroke="#9AA5B4" stroke-width="3"/>`;for(let k=1;k<4;k++){const px=x+Math.cos(a)*r*.25*k,py=y+Math.sin(a)*r*.25*k;inner+=`<path d="M${px} ${py}l${Math.cos(a+.8)*10} ${Math.sin(a+.8)*10}M${px} ${py}l${Math.cos(a-.8)*10} ${Math.sin(a-.8)*10}" stroke="#AFB8C6" stroke-width="2"/>`}}}
+ else if(kind==='silver'){bgc='#D3E7F6';/* 은 수지상 결정: Cu²⁺로 연한 푸른 용액 속, 구리선에서 자란 은빛 나뭇가지(면심입방 → 곁가지 90°) */
+  let sd=7;const rn=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};
+  const wy0=y+r*.62,wy1=y+r*.5;const wire=`M${x-r} ${wy0}L${x+r} ${wy1}`;
+  let br='';const seg=(x1,y1,a,len,w,dep)=>{const x2=x1+Math.cos(a)*len,y2=y1+Math.sin(a)*len;br+=`<path d="M${x1.toFixed(1)} ${y1.toFixed(1)}L${x2.toFixed(1)} ${y2.toFixed(1)}" stroke-width="${w.toFixed(1)}"/>`;
+   if(dep>0){const n=Math.max(2,Math.round(len/7));for(let k=1;k<n;k++){const t=k/n,px=x1+(x2-x1)*t,py=y1+(y2-y1)*t,sl=len*(1-t)*.55*(0.8+rn()*.4);if(sl<2.5)continue;const side=k%2?1:-1;seg(px,py,a+side*Math.PI/2,sl,Math.max(.8,w*.6),dep-1)}}};
+  for(let k=0;k<6;k++){const t=(k+.5)/6,bx=x-r+2*r*t,by=wy0+(wy1-wy0)*t-r*.05;seg(bx,by,-Math.PI/2+(rn()-.5)*.5,r*(.55+rn()*.45),2.6,2)}
+  inner+=`<g stroke="#7E8794" stroke-linecap="round" fill="none">${br}</g><g stroke="#E4E8EE" stroke-linecap="round" fill="none" transform="translate(-.6 -.6)" opacity=".9">${br.replace(/stroke-width="([\d.]+)"/g,(m,v)=>`stroke-width="${(Math.max(.5,v*.45)).toFixed(1)}"`)}</g>`;
+  inner+=`<path d="${wire}" stroke="#7A3E17" stroke-width="${(r*.24).toFixed(1)}" stroke-linecap="round"/><path d="${wire}" stroke="#C26A30" stroke-width="${(r*.17).toFixed(1)}" stroke-linecap="round"/><path d="M${x-r} ${wy0-r*.04}L${x+r} ${wy1-r*.04}" stroke="#E7A06A" stroke-width="${(r*.04).toFixed(1)}"/>`}
  else if(kind==='dna'){bgc='#F3F6FA';inner+=`<path d="M${x-40} ${y+10}c10-20 20 10 30-10s20 14 30-6 14 10 22 0" stroke="#fff" stroke-width="5" fill="none"/><path d="M${x-40} ${y+10}c10-20 20 10 30-10s20 14 30-6 14 10 22 0" stroke="#C5CCD6" stroke-width="1.5" fill="none"/>`}
  return `<g><defs><clipPath id="${id}"><circle cx="${x}" cy="${y}" r="${r}"/></clipPath></defs><circle cx="${x}" cy="${y}" r="${r}" fill="${bgc}"/><g clip-path="url(#${id})">${inner}</g><circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="var(--svg-ink)" stroke-width="3"/>${lab?SV.label({x,y:y+r+14,s:lab}):''}</g>`};
 
@@ -2065,7 +2146,7 @@ SV.evap=({x=160,y=150,w=110,c='#4F86FF'})=>`<g><path d="M${x-w/2} ${y-20}Q${x} $
 SV.tripod=({x=160,y=190,h=60})=>`<g><path d="M${x-40} ${y}L${x-30} ${y-h}M${x+40} ${y}L${x+30} ${y-h}M${x-46} ${y-h}h92" ${S} stroke-width="3"/><path d="M${x-40} ${y-h-2}h80" stroke="#9AA3B1" stroke-width="4" stroke-dasharray="3 2"/></g>`;
 SV.bag=({x=160,y=140,c='#F4E3B0',lab})=>`<g><path d="M${x-14} ${y-70}h28l4 70q-18 10-36 0z" fill="${c}" opacity=".8" ${S}/><path d="M${x-18} ${y-70}h36" stroke="#59657A" stroke-width="5"/>${lab?SV.txt({x,y:y+18,s:lab,z:10}):''}</g>`;
 SV.heart=({x=160,y=100,bpm='72'})=>`<g><path d="M${x} ${y+30}c-40-26-46-50-30-62 12-9 26-3 30 8 4-11 18-17 30-8 16 12 10 36-30 62z" fill="#E5484D" opacity=".85"/><path d="M${x-80} ${y+60}h40l8-18 10 34 10-50 8 34h84" fill="none" stroke="#E5484D" stroke-width="2.4"/>${SV.label({x:x+80,y:y-30,s:bpm+' bpm'})}</g>`;
-SV.watchband=({x=160,y=110})=>`<g><rect x="${x-30}" y="${y-60}" width="60" height="120" rx="14" fill="#59657A"/><rect x="${x-34}" y="${y-36}" width="68" height="72" rx="16" fill="#203046" ${S}/>${SV.txt({x,y:y+5,s:'♥ 84',z:14,c:'#FF7A8A',w:700})}</g>`;
+SV.watchband=({x=160,y=110})=>`<g><rect x="${x-30}" y="${y-60}" width="60" height="120" rx="14" fill="#59657A"/><rect x="${x-34}" y="${y-36}" width="68" height="72" rx="16" fill="#203046" ${S}/>${PICTO_HEART(x-15,y,6,'#FF7A8A')}${SV.txt({x:x+7,y:y+5,s:'84',z:14,c:'#FF7A8A',w:700})}</g>`;
 SV.nylon=({x=160,y=150})=>`<g>${SV.beaker({x,y:y+40,w:90,h:80,lv:.6,c:'#EAF4FF'})}<rect x="${x-43}" y="${y-6}" width="86" height="10" fill="#F6E7A8" opacity=".9"/><path d="M${x} ${y}C${x} ${y-40} ${x+10} ${y-80} ${x+30} ${y-110}" stroke="#F4F1E6" stroke-width="4" fill="none"/><path d="M${x} ${y}C${x} ${y-40} ${x+10} ${y-80} ${x+30} ${y-110}" stroke="var(--svg-ink)" stroke-width="1" fill="none"/>${SV.rod({x1:x+20,y1:y-118,x2:x+70,y2:y-104})}</g>`;
 SV.blood=({x=160,y=110,res=['','',''],labs=['항A','항B','항Rh']})=>{let o=`<g><rect x="${x-110}" y="${y-36}" width="220" height="72" rx="10" fill="var(--svg-paper)" ${S}/>`;[0,1,2].forEach(i=>{const cx=x-70+i*70;o+=`<circle cx="${cx}" cy="${y-4}" r="22" fill="#F7D9DE" ${S} stroke-width="1.3"/>`;if(res[i]==='+')for(let k=0;k<8;k++)o+=`<circle cx="${cx-10+(k*7)%20}" cy="${y-12+(k*11)%18}" r="3" fill="#9C1C2E"/>`;else o+=`<circle cx="${cx}" cy="${y-4}" r="12" fill="#D9485E" opacity=".55"/>`;o+=SV.txt({x:cx,y:y+30,s:labs[i],z:10})});return o+'</g>'};
 SV.bean=({x=160,y=150,sprout=1})=>{let o='<g>';[[-30,0],[0,-6],[30,2],[-14,14],[16,16]].forEach(p=>{o+=`<ellipse cx="${x+p[0]}" cy="${y+p[1]}" rx="13" ry="9" fill="#E9D59E" ${S} stroke-width="1.3"/>`;if(sprout)o+=`<path d="M${x+p[0]+10} ${y+p[1]}q10 4 8 16" stroke="#F4F1E6" stroke-width="3" fill="none"/>`});return o+'</g>'};
@@ -2144,10 +2225,10 @@ materials:[{c:'agno3',amt:'0.1 M, 30 mL'},{c:'cu',amt:'구리선 30 cm'},{a:'bea
 safety:['질산은이 피부에 닿으면 며칠 동안 검게 착색되므로 반드시 장갑을 낀다.','질산은 용액이 눈에 들어가면 손상될 수 있으니 보안경을 쓴다.','반응 후 용액은 중금속 폐액통에 버린다.'],
 steps:[
 {t:'구리선 준비하기',d:'{m:sandpaper|사포}로 {c:cu|구리선} 표면을 문질러 광택이 나게 한 뒤, 연필에 감아 용수철 모양으로 만든다.',tip:'표면적이 넓을수록 은 결정이 잘 보인다.',img:[['wire',{x:120,y:170,h:90}],['label',{x:120,y:194,s:'용수철 모양 구리선'}],['paper',{x:225,y:150,w:70,c:'#C9B79A',lab:'사포'}]]},
-{t:'질산은 수용액 붓기',d:'{a:beaker|비커}에 {c:agno3} 수용액을 약 30 mL 붓는다. 용액이 무색 투명한지 확인한다.',warn:'장갑과 보안경을 착용한 상태에서 붓는다.',img:[['bottle',{x:90,y:150,lab:'AgNO₃',amber:1}],['arrow',{x1:130,y1:90,x2:180,y2:110}],['beaker',{x:220,y:186,w:90,h:100,lv:.4,c:'#EEF4FA'}],['label',{x:220,y:68,s:'무색 투명'}]]},
-{t:'구리선 넣기',d:'구리선을 용액에 넣고 움직이지 않게 둔다. 넣자마자 표면에 회색 막이 생기기 시작한다.',img:[['beaker',{x:140,y:186,w:110,h:110,lv:.45,c:'#EEF4FA'}],['wire',{x:140,y:176,h:60}],['label',{x:250,y:120,s:'회색 막 생성',a:'middle'}],['arrow',{x1:225,y1:126,x2:160,y2:140}]]},
-{t:'시간에 따라 관찰하기',d:'5분, 10분, 20분이 지날 때마다 구리선 표면과 용액의 색을 기록한다. 은빛 나뭇가지 모양 결정(은나무)이 자라고, 용액은 점점 푸른색이 된다.',tip:'돋보기나 실체 현미경으로 보면 결정 모양이 잘 보인다.',img:[['beaker',{x:100,y:186,w:110,h:110,lv:.45,c:'#9CC9F2'}],['wire',{x:100,y:176,h:60,silver:1}],['view',{x:240,y:96,r:56,kind:'silver',lab:'은 결정 확대'}]]},
-{t:'정리하기',d:'구리선을 꺼내 은 결정을 관찰한 뒤, 용액은 중금속 폐액통에 모은다. 사용한 기구는 물로 씻는다.',warn:'질산은 폐액을 하수구에 버리지 않는다.',img:[['beaker',{x:90,y:186,w:80,h:90,lv:.4,c:'#9CC9F2'}],['arrow',{x1:140,y1:120,x2:190,y2:120}],['waste',{x:236,y:186,lab:'중금속 폐액'}]]}],
+{t:'질산은 수용액 붓기',d:'{a:beaker|비커}에 {c:agno3} 수용액을 약 30 mL 붓는다. 용액이 무색 투명한지 확인한다.',warn:'장갑과 보안경을 착용한 상태에서 붓는다.',img:[['bottle',{x:90,y:150,lab:'AgNO₃',amber:1}],['arrow',{x1:130,y1:90,x2:180,y2:110}],['beaker',{x:220,y:186,w:90,h:100,lv:.6,cap:50,c:'#EEF4FA'}],['label',{x:220,y:68,s:'무색 투명'}]]},
+{t:'구리선 넣기',d:'구리선을 용액에 넣고 움직이지 않게 둔다. 넣자마자 표면에 회색 막이 생기기 시작한다.',img:[['beaker',{x:140,y:186,w:110,h:110,lv:.6,cap:50,c:'#EEF4FA'}],['wire',{x:140,y:182,h:56}],['label',{x:250,y:120,s:'회색 막 생성',a:'middle'}],['arrow',{x1:225,y1:126,x2:160,y2:140}]]},
+{t:'시간에 따라 관찰하기',d:'5분, 10분, 20분이 지날 때마다 구리선 표면과 용액의 색을 기록한다. 은빛 나뭇가지 모양 결정(은나무)이 자라고, 용액은 점점 푸른색이 된다.',tip:'돋보기나 실체 현미경으로 보면 결정 모양이 잘 보인다.',img:[['beaker',{x:100,y:186,w:110,h:110,lv:.6,cap:50,c:'#9CC9F2'}],['wire',{x:100,y:182,h:56,silver:1}],['view',{x:240,y:96,r:56,kind:'silver',lab:'은 결정 확대'}]]},
+{t:'정리하기',d:'구리선을 꺼내 은 결정을 관찰한 뒤, 용액은 중금속 폐액통에 모은다. 사용한 기구는 물로 씻는다.',warn:'질산은 폐액을 하수구에 버리지 않는다.',img:[['beaker',{x:90,y:186,w:80,h:90,lv:.6,cap:50,c:'#9CC9F2'}],['arrow',{x1:140,y1:120,x2:190,y2:120}],['waste',{x:236,y:186,lab:'중금속 폐액'}]]}],
 table:{cap:'시간에 따른 관찰 결과(예시)',head:['시간','구리선 표면','용액의 색'],rows:[['0분','붉은 갈색 광택','무색'],['5분','회색 막, 작은 결정','거의 무색'],['10분','은빛 바늘 모양 결정','연한 푸른색'],['20분','나뭇가지 모양 은 결정 성장','푸른색']]},
 charts:[{type:'bar',title:'반응 전후 양이온 수(모형)',x:'',y:'양이온 수(상댓값)',series:[{pts:[['반응 전 Ag⁺',10,'#9AA5B4'],['반응 후 Ag⁺',4,'#B9C2CE'],['반응 후 Cu²⁺',3,'#4F86FF']]}],cap:'Ag⁺ 6개가 반응하면 Cu²⁺ 3개가 생긴다. 전체 양이온 수는 10개에서 7개로 줄어든다.'}],
 questions:['구리와 은 중 산화된 물질과 환원된 물질은 각각 무엇인가?','용액이 푸른색으로 변한 까닭을 이온으로 설명하시오.','반응이 진행될수록 용액 속 양이온 수가 줄어드는 까닭은?','구리선 대신 은선을 질산 구리(II) 수용액에 넣으면 반응이 일어날까? 그 까닭은?'],
@@ -2667,7 +2748,7 @@ TS.sensorbox=({x=270,y=60,val='CO₂ 820 ppm'})=>tscr(x-48,y-22,96,44,val,TC.lcd
 TS.gauge=({x=160,y=110,val='96.5 kPa'})=>{tseed('ga',x,y);return TP(tell(x,y,34,34,24),'#FFFDF4',2.8,.4)+`<path d="M${x-22} ${y+10}a24 24 0 0 1 44 0" stroke="${TC.creamS}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M${x} ${y}l17 -15" stroke="${TC.brick}" stroke-width="2.8" stroke-linecap="round"/><circle cx="${x}" cy="${y}" r="3.2" fill="${TC.ink}"/>`+ttx(x,y+22,val,9)};
 TS.stopwatch=({x=270,y=50,s='00:42'})=>{tseed('sw',x,y);return TP(tell(x,y,22,22,22),'#FFFDF4',2.6,.4)+TP(trr(x-5,y-31,10,7,2),TC.brick,2,.1)+`<path d="M${x} ${y}V${y-14}M${x} ${y}l8 6" stroke="${TC.ink}" stroke-width="2.4" stroke-linecap="round"/>`+ttx(x,y+38,s,11)+tface(x,y+8,0)};
 TS.heart=({x=160,y=100,bpm='72'})=>{tseed('ht',x,y);return TP([[x,y+30],[x-26,y+10],[x-36,y-10],[x-32,y-26],[x-18,y-32],[x-6,y-26],[x,y-20],[x+6,y-26],[x+18,y-32],[x+32,y-26],[x+36,y-10],[x+26,y+10]],'#E5484D',2.8,.6)+TL([[x-80,y+60],[x-40,y+60],[x-32,y+42],[x-22,y+76],[x-12,y+26],[x-4,y+60],[x+80,y+60]],2.4,.2,'#E5484D')+TS.label({x:x+80,y:y-30,s:bpm+' bpm'})+tface(x,y-4,30,0)};
-TS.watchband=({x=160,y=110})=>TP(trr(x-30,y-60,60,120,14),'#59657A',2.6,.4)+TP(trr(x-34,y-36,68,72,16),'#203046',2.8,.4)+ttx(x,y+5,'♥ 84',14,'#FF7A8A');
+TS.watchband=({x=160,y=110})=>TP(trr(x-30,y-60,60,120,14),'#59657A',2.6,.4)+TP(trr(x-34,y-36,68,72,16),'#203046',2.8,.4)+PICTO_HEART(x-15,y,6,'#FF7A8A')+ttx(x+7,y+5,'84',14,'#FF7A8A');
 TS.lightsrc=({x=60,y=70})=>{tseed('ls',x,y);return TP(tell(x,y,16,16,20),'#FFE27A',2.6,.4)+TP(trr(x-6,y+14,12,10,2),TC.steel,2,.1)+[0,40,80,120,-40,-80].map(a=>{const r=a*Math.PI/180;return `<path d="M${t1(x+Math.cos(r)*24)} ${t1(y-Math.sin(r)*24)}L${t1(x+Math.cos(r)*34)} ${t1(y-Math.sin(r)*34)}" stroke="${TC.ink}" stroke-width="2.4" stroke-linecap="round"/>`}).join('')+tface(x,y+2,18,0)};
 TS.loop=({x=160,y=100,rot=-25,hot=0})=>{tseed('lo',x,y);const wc=hot?'#FF6A3D':'#9C8C72';return `<g transform="rotate(${rot} ${x} ${y})">${TP(trr(x-90,y-5,60,10,5),TC.teal,2.3,.3)}<path d="M${x-30} ${y}h48" stroke="${wc}" stroke-width="2.4"/><ellipse cx="${x+24}" cy="${y}" rx="5.5" ry="4.5" fill="none" stroke="${wc}" stroke-width="2.4"/></g>`};
 TS.goggles=({x=160,y=100})=>{tseed('gg',x,y);return TL([[x-66,y-12],[x-52,y-12]],4,.2,TC.tealS)+TL([[x+52,y-12],[x+66,y-12]],4,.2,TC.tealS)+TP([[x-52,y-16],[x+52,y-16],[x+52,y+8],[x+42,y+18],[x+14,y+18],[x+8,y+10],[x-8,y+10],[x-14,y+18],[x-42,y+18],[x-52,y+8]],'#D8EEF0',2.9,.5,.95)+TP(trr(x-52,y-20,104,8,4),TC.teal,2.4,.3)+`<path d="M${x-40} ${y-6}l12 16M${x+18} ${y-6}l12 16" stroke="#fff" stroke-width="3" stroke-linecap="round"/>`};
@@ -2677,7 +2758,7 @@ TS.caster=({x=160,y=150})=>{tseed('cs',x,y);let o=TP([[x-90,y],[x-60,y-26],[x+60
 TS.bag=({x=160,y=140,c='#F4E3B0',lab})=>{tseed('bg',x,y);return TP([[x-14,y-70],[x+14,y-70],[x+18,y-4],[x,y+2],[x-18,y-4]],c,2.6,.6,.9)+TL([[x-18,y-70],[x+18,y-70]],5,.2,'#59657A')+tlab(x,y+18,lab)};
 TS.plate=({x=160,y=150,h=60,c='#C8763A',w=10})=>{tseed('pl',x,y);return TP(trr(x-w/2,y-h,w,h,2),c,2.4,.3)+`<path d="M${x-w/2+2.5} ${y-h+5}V${y-h*0.5}" stroke="#fff" stroke-width="1.8" opacity=".6" stroke-linecap="round"/>`};
 TS.wire=({x=160,y=160,silver=0,h=70})=>{tseed('wr',x,y);let d=`M${x} ${y-h-20}V${y-h}`;for(let i=0;i<6;i++){const yy=y-h+i*(h/6);d+=`Q${x+16} ${yy+h/24} ${x} ${yy+h/12}Q${x-16} ${yy+h/8} ${x} ${yy+h/6}`}let o=`<path d="${d}" fill="none" stroke="${TC.ink}" stroke-width="5.6" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#C8763A" stroke-width="3" stroke-linecap="round"/>`;
- if(silver)for(let i=0;i<14;i++){const yy=y-h+5+i*(h/14),sx=i%2?1:-1;o+=`<path d="M${x+sx*8} ${yy}l${sx*8*silver} -3l${sx*4*silver} 4M${x+sx*12*silver} ${yy-2}l${sx*2} -6" stroke="#B9C2CE" stroke-width="2.2" fill="none" stroke-linecap="round"/>`}return o};
+ if(silver)o+=`<path d="${d}" fill="none" stroke="#9CA5B1" stroke-width="4.4" stroke-dasharray="2.5 2" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#D9DEE5" stroke-width="1.6" stroke-dasharray="1 3.5"/>`;if(silver)for(let i=0;i<14;i++){const yy=y-h+5+i*(h/14),sx=i%2?1:-1;o+=`<path d="M${x+sx*8} ${yy}l${sx*8*silver} -3l${sx*4*silver} 4M${x+sx*12*silver} ${yy-2}l${sx*2} -6" stroke="#B9C2CE" stroke-width="2.2" fill="none" stroke-linecap="round"/>`}return o};
 TS.wire2=({x1,y1,x2,y2,c='#E5484D'})=>{const d=`M${x1} ${y1}C${x1} ${(y1+y2)/2-30} ${x2} ${(y1+y2)/2-30} ${x2} ${y2}`;return `<path d="${d}" fill="none" stroke="${TC.ink}" stroke-width="4.6" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${c&&String(c).startsWith('#')?c:'#E5484D'}" stroke-width="2.4" stroke-linecap="round"/>`};
 TS.saltbridge=({x1=100,x2=220,y=110})=>{const d=`M${x1} ${y+40}V${y}H${x2}V${y+40}`;return `<path d="${d}" fill="none" stroke="${TC.ink}" stroke-width="14" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="#FFF1C4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M${x1-2} ${y+30}V${y-1}H${x1+30}" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>`};
 TS.gel=({x=160,y=110,w=240,h=110,lanes=[[.2,.4,.6,.8],[.35],[.5]],dye=1})=>{tseed('gl',x,y);const l=x-w/2,t=y-h/2;let o=tsh(x,y+h/2+6,w*0.5)+TP(trr(l,t,w,h,8),'#E6F0EE',2.8,.5,.95)+TP(trr(l+30,t+8,w-60,h-16,3),'#F2F8FF',2,.3);
@@ -6016,7 +6097,7 @@ function loadScript(src){return new Promise((res,rej)=>{const s=document.createE
 function loadPdfJs(){if(window.pdfjsLib&&window.pdfjsWorker)return Promise.resolve(window.pdfjsLib);if(PDFJS_P)return PDFJS_P;const base='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/';PDFJS_P=loadScript(base+'pdf.min.js').then(()=>loadScript(base+'pdf.worker.min.js')).then(()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc=base+'pdf.worker.min.js';return window.pdfjsLib}).catch(e=>{PDFJS_P=null;throw e});return PDFJS_P}
 /* --- 분석 --- */
 const VOCAB=`그림(scene) 형식: [["키",{속성}],...] — 320×200 캔버스, x 가운데 160, 바닥선 y≈186. 쓸 수 있는 키와 속성:
-beaker{x,y,w,h,c,lv,lab} flask{x,y,w,h,c,lv,lab} tube{x,y,w,h,c,lv,lab,rot} cyl{x,y,w,h,c,lv} volflask{x,y,r,c,lv} burette{x,top,bot,c,lv,read} stand{x,top,y} pipette{x,y,len,fill,lv,c} dropper{x,y,c} funnel{x,y,w,c} petri{x,y,r,c} watch{x,y,w,c} evap{x,y,w,c} balance{x,y,val} hotplate{x,y,w,t} lamp{x,y} flame{x,y,c,lab} microscope{x,y,s} slide{x,y,w,sample} thermo{x,y,h,lv} bottle{x,y,lab,amber} wellplate{x,y,n,cols} mortar{x,y,c} cuvette{x,y,c} spectro{x,y,val} phmeter{x,y,val} bath{x,y,w,t} chrom{x,y,bands} gel{x,y,w,h,lanes} syringe{x,y,len,fill} calorimeter{x,y} mtube{x,y,c,lv,s} centrifuge{x,y} multimeter{x,y,val} battery{x,y,v} power{x,y,v} rack{x,y,w} plate{x,y,h,w,c} wire2{x1,y1,x2,y2,c} saltbridge{x1,x2,y} view{x,y,r,kind(onion|red|plasmo|mitosis|gram|silver|dna),lab} label{x,y,s} txt{x,y,s,z} arrow{x1,y1,x2,y2} bubbles{x,y,w,h,n} drop{x,y,c} powder{x,y} paper{x,y,w} foam{x,y,w,h} plant{x,y,h} onion{x,y,r,red} potato{x,y} leaf{x,y,s} bean{x,y} stopwatch{x,y,s} splint{x,y}
+beaker{x,y,w,h,c,lv,lab,cap(용량 mL)} flask{x,y,w,h,c,lv,lab} tube{x,y,w,h,c,lv,lab,rot} cyl{x,y,w,h,c,lv} volflask{x,y,r,c,lv} burette{x,top,bot,c,lv,read} stand{x,top,y} pipette{x,y,len,fill,lv,c} dropper{x,y,c} funnel{x,y,w,c} petri{x,y,r,c} watch{x,y,w,c} evap{x,y,w,c} balance{x,y,val} hotplate{x,y,w,t} lamp{x,y} flame{x,y,c,lab} microscope{x,y,s} slide{x,y,w,sample} thermo{x,y,h,lv} bottle{x,y,lab,amber} wellplate{x,y,n,cols} mortar{x,y,c} cuvette{x,y,c} spectro{x,y,val} phmeter{x,y,val} bath{x,y,w,t} chrom{x,y,bands} gel{x,y,w,h,lanes} syringe{x,y,len,fill} calorimeter{x,y} mtube{x,y,c,lv,s} centrifuge{x,y} multimeter{x,y,val} battery{x,y,v} power{x,y,v} rack{x,y,w} plate{x,y,h,w,c} wire2{x1,y1,x2,y2,c} saltbridge{x1,x2,y} view{x,y,r,kind(onion|red|plasmo|mitosis|gram|silver|dna),lab} label{x,y,s} txt{x,y,s,z} arrow{x1,y1,x2,y2} bubbles{x,y,w,h,n} drop{x,y,c} powder{x,y} paper{x,y,w} foam{x,y,w,h} plant{x,y,h} onion{x,y,r,red} potato{x,y} leaf{x,y,s} bean{x,y} stopwatch{x,y,s} splint{x,y}
 c는 "#RRGGBB" 색, lv는 0~1 액체 높이. 실제 실험 장면을 정확히 나타내도록 기구를 배치하고, 2~5개 항목으로 간결하게.`;
 function keyList(){return '시약 키: '+Object.entries(CH).filter(([k])=>k!=='water').map(([k,c])=>k+'='+c.ko).join(', ')+'\n기구 키: '+Object.entries(AP).map(([k,a])=>k+'='+a.ko).join(', ')}
 async function impFind(chunk,signal){const prompt=`너는 과학 실험서·교과서를 분석하는 조교다. 아래는 PDF 일부 페이지의 텍스트다(각 페이지 앞에 [p.번호]).
@@ -6307,29 +6388,29 @@ const GLASS='#D6E8F5',GEDGE='#7E97AE';
 function shadow(x,y,rx){const id='sh'+(++_v2);return `<defs><radialGradient id="${id}"><stop offset="0" stop-color="#0F172A" stop-opacity=".18"/><stop offset="1" stop-color="#0F172A" stop-opacity="0"/></radialGradient></defs><ellipse cx="${n1(x)}" cy="${n1(y)}" rx="${n1(rx)}" ry="${n1(rx*0.16)}" fill="url(#${id})"/>`}
 function glassHi(x,y1,y2,w){return `<path d="M${n1(x)} ${n1(y1)}V${n1(y2)}" stroke="#FFFFFF" stroke-width="${n1(w)}" stroke-linecap="round" opacity=".75"/>`}
 /* 비커 */
-V2.beaker=({layer,x=160,y=180,w=70,h=90,c='#7FB6E8',lv=.5,marks=1})=>{const id='bk'+(++_v2),e=w*0.11,l=x-w/2,r=x+w/2,t=y-h,ly=y-(h-8)*lv,rx=w/2;
- let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,.92)}${vG(id+'s',lt(c,.45),lt(c,.2))}</defs>`+shadow(x,y+e*.4,w*.62);
+V2.beaker=({layer,x=160,y=180,w=70,h=90,c='#7FB6E8',lv=.5,marks=1,cap=250})=>{const id='bk'+(++_v2),e=w*0.11,l=x-w/2,r=x+w/2,t=y-h,ly=y-(h-8)*lv,rx=w/2;
+ let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,liqOp(c))}${vG(id+'s',lt(c,.45),lt(c,.2))}</defs>`+shadow(x,y+e*.4,w*.62);
  const BACKRIM=`<ellipse cx="${n1(x)}" cy="${n1(t)}" rx="${n1(rx)}" ry="${n1(e)}" fill="#EEF5FB" fill-opacity=".5" stroke="${GEDGE}" stroke-width="1"/>`;if(layer==='back')return BACKRIM;if(layer!=='front')o+=BACKRIM;
- if(lv>0)o+=`<path d="M${n1(l+1.2)} ${n1(ly)}V${n1(y)}A${n1(rx-1.2)} ${n1(e)} 0 0 0 ${n1(r-1.2)} ${n1(y)}V${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(rx-1.2)}" ry="${n1(e)}" fill="url(#${id}s)" stroke="${dk(c,.15)}" stroke-width=".6"/>`;
+ if(lv>0)o+=`<path d="M${n1(l+1.2)} ${n1(ly)}V${n1(y)}A${n1(rx-1.2)} ${n1(e)} 0 0 0 ${n1(r-1.2)} ${n1(y)}V${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(rx-1.2)}" ry="${n1(e)}" fill="url(#${id}s)" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="${liqOp(c)<.3?'#7F98B0':dk(c,.15)}" stroke-width="${liqOp(c)<.3?1.1:.6}"/>`;
  o+=`<path d="M${n1(l)} ${n1(t)}V${n1(y)}A${n1(rx)} ${n1(e)} 0 0 0 ${n1(r)} ${n1(y)}V${n1(t)}A${n1(rx)} ${n1(e)} 0 0 0 ${n1(l)} ${n1(t)}Z" fill="url(#${id}g)" stroke="${GEDGE}" stroke-width="1.1"/>`;
  o+=`<path d="M${n1(l)} ${n1(t)}A${n1(rx)} ${n1(e)} 0 0 0 ${n1(r)} ${n1(t)}" fill="none" stroke="${GEDGE}" stroke-width="1.8"/><path d="M${n1(l+.5)} ${n1(t-.5)}q-5 -2 -5 2q2 3 6 3.5" fill="#EEF5FB" stroke="${GEDGE}" stroke-width="1.1"/>`;
- if(marks){for(let i=1;i<=4;i++){const yy=y-(h-8)*i/5;o+=`<path d="M${n1(x-rx*.35)} ${n1(yy+e*.9)}Q${n1(x-rx*.15)} ${n1(yy+e*1.0)} ${n1(x+rx*(i%2?.05:.2))} ${n1(yy+e*1.0)}" fill="none" stroke="#6E8399" stroke-width=".8" opacity=".75"/>`;if(i%2===0)o+=`<text x="${n1(x+rx*.24)}" y="${n1(yy+e*1.0+2.2)}" font-size="${n1(Math.max(4,w*.08))}" fill="#5E7387" font-family="Arial,sans-serif">${i*50}</text>`}}
+ if(marks){for(let i=1;i<=4;i++){const yy=y-(h-8)*i/5;o+=`<path d="M${n1(x-rx*.35)} ${n1(yy+e*.9)}Q${n1(x-rx*.15)} ${n1(yy+e*1.0)} ${n1(x+rx*(i%2?.05:.2))} ${n1(yy+e*1.0)}" fill="none" stroke="#6E8399" stroke-width=".8" opacity=".75"/>`;if(i%2===0)o+=`<text x="${n1(x+rx*.24)}" y="${n1(yy+e*1.0+2.2)}" font-size="${n1(Math.max(4,w*.08))}" fill="#5E7387" font-family="Arial,sans-serif">${+(i*cap/5).toFixed(1)}</text>`}}
  o+=glassHi(l+w*.13,t+e+5,y-6,Math.max(1.6,w*.05))+glassHi(r-w*.1,t+e+8,t+h*.5,1.2);
  return o};
 /* 삼각 플라스크 */
 V2.flask=({layer,x=160,y=180,w=78,h=100,c='#F4A3C4',lv=.3})=>{const id='fk'+(++_v2),n=w*.27,nh=h*.33,t=y-h,bt=t+nh,l=x-w/2,r=x+w/2,en=n*.18,eb=w*.11;const hw=yy=>n/2+(w/2-n/2)*Math.max(0,Math.min(1,(yy-bt)/(y-bt)));
- let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,.9)}${vG(id+'s',lt(c,.45),lt(c,.2))}</defs>`+shadow(x,y+eb*.4,w*.6);
+ let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,liqOp(c))}${vG(id+'s',lt(c,.45),lt(c,.2))}</defs>`+shadow(x,y+eb*.4,w*.6);
  const BACKRIM=`<ellipse cx="${n1(x)}" cy="${n1(t)}" rx="${n1(n/2+1.6)}" ry="${n1(en)}" fill="#EEF5FB" fill-opacity=".5" stroke="${GEDGE}" stroke-width="1"/>`;if(layer==='back')return BACKRIM;if(layer!=='front')o+=BACKRIM;
- if(lv>0){const ly=y-(h-nh)*lv,w2=hw(ly)-1.2,e2=eb*w2/(w/2);o+=`<path d="M${n1(x-w2)} ${n1(ly)}L${n1(l+1.5)} ${n1(y)}A${n1(w/2-1.5)} ${n1(eb)} 0 0 0 ${n1(r-1.5)} ${n1(y)}L${n1(x+w2)} ${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(w2)}" ry="${n1(e2)}" fill="url(#${id}s)" stroke="${dk(c,.15)}" stroke-width=".6"/>`}
+ if(lv>0){const ly=y-(h-nh)*lv,w2=hw(ly)-1.2,e2=eb*w2/(w/2);o+=`<path d="M${n1(x-w2)} ${n1(ly)}L${n1(l+1.5)} ${n1(y)}A${n1(w/2-1.5)} ${n1(eb)} 0 0 0 ${n1(r-1.5)} ${n1(y)}L${n1(x+w2)} ${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(w2)}" ry="${n1(e2)}" fill="url(#${id}s)" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="${liqOp(c)<.3?'#7F98B0':dk(c,.15)}" stroke-width="${liqOp(c)<.3?1.1:.6}"/>`}
  o+=`<path d="M${n1(x-n/2)} ${n1(t)}V${n1(bt)}L${n1(l)} ${n1(y)}A${n1(w/2)} ${n1(eb)} 0 0 0 ${n1(r)} ${n1(y)}L${n1(x+n/2)} ${n1(bt)}V${n1(t)}" fill="url(#${id}g)" stroke="${GEDGE}" stroke-width="1.1" stroke-linejoin="round"/>`;
  o+=`<path d="M${n1(x-n/2-1.6)} ${n1(t)}A${n1(n/2+1.6)} ${n1(en+.6)} 0 0 0 ${n1(x+n/2+1.6)} ${n1(t)}" fill="none" stroke="${GEDGE}" stroke-width="2.2"/>`;
  o+=`<path d="M${n1(l+w*.2)} ${n1(y-8)}L${n1(x-n/2+2.4)} ${n1(bt+6)}V${n1(t+5)}" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity=".75"/>`;
  return o};
 /* 시험관 */
 V2.tube=({layer,x=160,y=180,w=16,h=110,c='#7FB6E8',lv=.4})=>{const id='tb'+(++_v2),e=w*.2,l=x-w/2,r=x+w/2,t=y-h,rr=w/2,ly=y-(h-8)*lv;
- let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,.92)}</defs>`;
+ let o=`<defs>${cylG(id+'g',GLASS,.55)}${cylG(id+'l',c,liqOp(c))}</defs>`;
  const BACKRIM=`<ellipse cx="${n1(x)}" cy="${n1(t)}" rx="${n1(rr)}" ry="${n1(e)}" fill="#EEF5FB" fill-opacity=".5" stroke="${GEDGE}" stroke-width=".9"/>`;if(layer==='back')return BACKRIM;if(layer!=='front')o+=BACKRIM;
- if(lv>0)o+=`<path d="M${n1(l+1)} ${n1(ly)}V${n1(y-rr)}A${n1(rr-1)} ${n1(rr-1)} 0 0 0 ${n1(r-1)} ${n1(y-rr)}V${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(rr-1)}" ry="${n1(e)}" fill="${lt(c,.4)}" stroke="${dk(c,.15)}" stroke-width=".5"/>`;
+ if(lv>0)o+=`<path d="M${n1(l+1)} ${n1(ly)}V${n1(y-rr)}A${n1(rr-1)} ${n1(rr-1)} 0 0 0 ${n1(r-1)} ${n1(y-rr)}V${n1(ly)}Z" fill="url(#${id}l)"/><ellipse cx="${n1(x)}" cy="${n1(ly)}" rx="${n1(rr-1)}" ry="${n1(e)}" fill="${lt(c,.4)}" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="${dk(c,.15)}" stroke-width=".5"/>`;
  o+=`<path d="M${n1(l)} ${n1(t)}V${n1(y-rr)}A${n1(rr)} ${n1(rr)} 0 0 0 ${n1(r)} ${n1(y-rr)}V${n1(t)}" fill="url(#${id}g)" stroke="${GEDGE}" stroke-width="1"/><path d="M${n1(l-1)} ${n1(t)}A${n1(rr+1)} ${n1(e+.5)} 0 0 0 ${n1(r+1)} ${n1(t)}" fill="none" stroke="${GEDGE}" stroke-width="1.6"/>`;
  return o+glassHi(l+w*.24,t+e+3,y-rr-2,Math.max(1.2,w*.12))};
 /* 시험관대(흰 플라스틱) */
@@ -6342,7 +6423,7 @@ V2.rack=({x=160,y=180,w=150,n=4})=>{const id='rk'+(++_v2),l=x-w/2,d=9;let back=`
  return {back,front,xs:xs.map(v=>v+d*.5),top}};
 /* 마이크로튜브 */
 V2.mtube=({x=160,y=170,c='#9ED3A5',lv=.45,cap='#F2F4F7'})=>{const id='mt'+(++_v2),r=6.5,H=40,t=y-H,cone=y-H*.42,e=r*.3;
- let o=`<defs>${cylG(id+'g','#EAF1F6',.7)}${cylG(id+'l',c,.9)}</defs>`;const body=`M${n1(x-r)} ${n1(t)}V${n1(cone)}L${n1(x-1.4)} ${n1(y)}H${n1(x+1.4)}L${n1(x+r)} ${n1(cone)}V${n1(t)}`;
+ let o=`<defs>${cylG(id+'g','#EAF1F6',.7)}${cylG(id+'l',c,liqOp(c))}</defs>`;const body=`M${n1(x-r)} ${n1(t)}V${n1(cone)}L${n1(x-1.4)} ${n1(y)}H${n1(x+1.4)}L${n1(x+r)} ${n1(cone)}V${n1(t)}`;
  if(lv>0){const ly=y-H*.5*lv*1.6,hw=ly<cone?r-1:Math.max(1,(r-1)*(y-ly)/(y-cone));o+=`<path d="M${n1(x-hw)} ${n1(ly)}${ly<cone?`L${n1(x-r+1)} ${n1(cone)}`:''}L${n1(x-1)} ${n1(y-.8)}H${n1(x+1)}${ly<cone?`L${n1(x+r-1)} ${n1(cone)}`:''}L${n1(x+hw)} ${n1(ly)}Z" fill="url(#${id}l)"/>`}
  o=`<path d="${body}Z" fill="url(#${id}g)"/>`+o+`<path d="${body}" fill="none" stroke="#8FA2B4" stroke-width="1"/>`;
  o+=`<rect x="${n1(x-r-1.6)}" y="${n1(t-3)}" width="${n1(2*r+3.2)}" height="3.6" rx="1.2" fill="${cap}" stroke="#8FA2B4" stroke-width=".9"/><path d="M${n1(x+r+1.6)} ${n1(t-1.5)}q4 1 3.5 6" fill="none" stroke="#8FA2B4" stroke-width="1"/><ellipse cx="${n1(x)}" cy="${n1(t-3.6)}" rx="${n1(r+1.3)}" ry="${n1(e+.8)}" fill="${lt(cap,.3)}" stroke="#8FA2B4" stroke-width=".9"/>`;
@@ -6351,10 +6432,10 @@ V2.mtube=({x=160,y=170,c='#9ED3A5',lv=.45,cap='#F2F4F7'})=>{const id='mt'+(++_v2
 V2.micropip=({x=160,y=150,c})=>{const id='mp'+(++_v2);let o=`<defs>${cylG(id+'b','#E4E8EE')}${cylG(id+'p','#3D7BE0')}${cylG(id+'s','#C9D1DA')}</defs>`;
  o+=`<path d="M${n1(x-.8)} ${n1(y)}L${n1(x-3.6)} ${n1(y-34)}H${n1(x+3.6)}L${n1(x+.8)} ${n1(y)}Z" fill="#F1F6FA" fill-opacity=".8" stroke="#9AAABA" stroke-width=".8"/>`;
  if(c)o+=`<path d="M${n1(x-.6)} ${n1(y-1)}L${n1(x-1.6)} ${n1(y-12)}H${n1(x+1.6)}L${n1(x+.6)} ${n1(y-1)}Z" fill="${c}"/>`;
- o+=`<path d="M${n1(x-4)} ${n1(y-34)}L${n1(x-6)} ${n1(y-62)}H${n1(x+6)}L${n1(x+4)} ${n1(y-34)}Z" fill="url(#${id}s)" stroke="#7D8C9C" stroke-width=".9"/>`;
- o+=`<rect x="${n1(x-9)}" y="${n1(y-128)}" width="18" height="66" rx="6" fill="url(#${id}b)" stroke="#7D8C9C" stroke-width="1"/><rect x="${n1(x+7)}" y="${n1(y-124)}" width="8" height="22" rx="2.5" fill="url(#${id}s)" stroke="#7D8C9C" stroke-width=".9"/>`;
+ o+=`<path d="M${n1(x-4)} ${n1(y-34)}L${n1(x-6)} ${n1(y-62)}H${n1(x+6)}L${n1(x+4)} ${n1(y-34)}Z" fill="url(#${id}s)" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="#7D8C9C" stroke-width=".9"/>`;
+ o+=`<rect x="${n1(x-9)}" y="${n1(y-128)}" width="18" height="66" rx="6" fill="url(#${id}b)" stroke="#7D8C9C" stroke-width="1"/><rect x="${n1(x+7)}" y="${n1(y-124)}" width="8" height="22" rx="2.5" fill="url(#${id}s)" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="#7D8C9C" stroke-width=".9"/>`;
  o+=`<rect x="${n1(x-6)}" y="${n1(y-112)}" width="12" height="9" rx="1.5" fill="#24324A" stroke="#18233A" stroke-width=".6"/><text x="${n1(x)}" y="${n1(y-105.5)}" text-anchor="middle" font-size="5.5" font-weight="700" fill="#7FE3F2" font-family="Arial,sans-serif">200</text>`;
- o+=`<rect x="${n1(x-3)}" y="${n1(y-142)}" width="6" height="15" fill="url(#${id}s)" stroke="#7D8C9C" stroke-width=".8"/><rect x="${n1(x-6)}" y="${n1(y-150)}" width="12" height="9" rx="3" fill="url(#${id}p)" stroke="#2457A8" stroke-width=".9"/>`;
+ o+=`<rect x="${n1(x-3)}" y="${n1(y-142)}" width="6" height="15" fill="url(#${id}s)" fill-opacity="${Math.min(1,liqOp(c)+.12)}" stroke="#7D8C9C" stroke-width=".8"/><rect x="${n1(x-6)}" y="${n1(y-150)}" width="12" height="9" rx="3" fill="url(#${id}p)" stroke="#2457A8" stroke-width=".9"/>`;
  return o};
 /* 가열 교반기 */
 V2.hotplate=({x=160,y=190,w=120,t='80 °C',on=1})=>{const id='hp'+(++_v2),l=x-w/2,r=x+w/2,h=24,d=12;let o=`<defs>${vG(id+'b','#FBFCFD','#D5DCE4')}${vG(id+'t',on?'#F3D9D2':'#E9EDF1',on?'#E8BFB3':'#CDD4DC')}</defs>`+shadow(x,y+2,w*.6);
@@ -6371,7 +6452,7 @@ V2.stand=({x=100,y=190,top=20,clampY=60,armTo=150})=>{const id='st'+(++_v2);let 
  o+=`<rect x="${n1(x-7)}" y="${n1(clampY-6)}" width="14" height="12" rx="2" fill="#5A6578" stroke="#3C4657" stroke-width=".8"/><rect x="${n1(x+7)}" y="${n1(clampY-2.5)}" width="${n1(armTo-x-14)}" height="5" rx="2" fill="url(#${id}r)" stroke="#7D8C9C" stroke-width=".8"/>`;
  o+=`<path d="M${n1(armTo-9)} ${n1(clampY-7)}h9q3 0 3 3v8q0 3 -3 3h-9" fill="none" stroke="#5A6578" stroke-width="3"/>`;
  return o};
-V2.burette=({x=150,top=20,bot=140,c='#E9F2FA',lv=.75})=>{const id='bu'+(++_v2),w=9,l=x-w/2,ly=top+6+(bot-top-6)*(1-lv);let o=`<defs>${cylG(id+'g',GLASS,.6)}${cylG(id+'l',c,.9)}${cylG(id+'k','#2F6FD6')}</defs>`;
+V2.burette=({x=150,top=20,bot=140,c='#E9F2FA',lv=.75})=>{const id='bu'+(++_v2),w=9,l=x-w/2,ly=top+6+(bot-top-6)*(1-lv);let o=`<defs>${cylG(id+'g',GLASS,.6)}${cylG(id+'l',c,liqOp(c))}${cylG(id+'k','#2F6FD6')}</defs>`;
  o+=`<rect x="${n1(l+1)}" y="${n1(ly)}" width="${n1(w-2)}" height="${n1(bot-ly)}" fill="url(#${id}l)"/>`;
  o+=`<path d="M${n1(l)} ${n1(top)}V${n1(bot)}H${n1(l+w)}V${n1(top)}" fill="url(#${id}g)" stroke="${GEDGE}" stroke-width="1"/><ellipse cx="${n1(x)}" cy="${n1(top)}" rx="${n1(w/2+.8)}" ry="1.6" fill="#EEF5FB" stroke="${GEDGE}" stroke-width="1"/>`;
  for(let i=0;i<=25;i++){const yy=top+8+i*(bot-top-14)/25;o+=`<path d="M${n1(l+.5)} ${n1(yy)}h${i%5?2.5:4.5}" stroke="#5E7387" stroke-width=".55"/>`}
@@ -6404,7 +6485,7 @@ V2.tile=({x=110,y=180,w=60})=>`<path d="M${n1(x-w/2)} ${n1(y)}L${n1(x-w/2+8)} ${
 /* ===== V2 적용: 사이트의 주요 기구를 신규 라이브러리로 교체 ===== */
 (function(){
 const R=s=>`<g data-raw="1">${s}</g>`;const lab=(x,y,t)=>t?ttx(x,y,t,12):'';
-TS.beaker=(o)=>{const w=o.w||80,h=o.h||95,x=o.x??160,y=o.y??180,e=w*.11;let s=V2.beaker({x,y,w,h,c:tlq(o.c),lv:o.lv??.5,layer:o.layer,marks:w>=40?1:0});
+TS.beaker=(o)=>{const w=o.w||80,h=o.h||95,x=o.x??160,y=o.y??180,e=w*.11;let s=V2.beaker({x,y,w,h,c:tlq(o.c),lv:o.lv??.5,layer:o.layer,marks:w>=40?1:0,cap:o.cap||250});
  if(o.layer==='back')return R(s);
  if(o.ice&&(o.lv??.5)>0){const l=x-w/2,ly=y-(h-8)*(o.lv??.5);for(let i=0;i<4;i++){const ix=l+10+i*(w-30)/3,iy=ly-4+(i%2)*6;s+=`<rect x="${n1(ix)}" y="${n1(iy)}" width="10" height="9" rx="2" fill="#FFFFFF" fill-opacity=".85" stroke="#9FB4C8" stroke-width=".8" transform="rotate(${i*13-15} ${n1(ix+5)} ${n1(iy+4.5)})"/>`}}
  return R(s)+lab(x,y+e+14,o.lab)};
@@ -6603,7 +6684,7 @@ const FAV_KEY='labstep-fav';
 function favGet(){return (store.get(FAV_KEY)||[]).filter(id=>byId(id))}
 function favHas(id){return favGet().includes(id)}
 function favToggle(id){const f=favGet();const i=f.indexOf(id);if(i>=0)f.splice(i,1);else f.unshift(id);store.set(FAV_KEY,f);return i<0}
-const _rowHTML=rowHTML;rowHTML=function(e){const h=_rowHTML(e);return favHas(e.id)?h.replace('<span class="pmeta">','<span class="pmeta"><i class="favmark" aria-label="즐겨찾기">★</i>'):h};
+const _rowHTML=rowHTML;rowHTML=function(e){const h=_rowHTML(e);return favHas(e.id)?h.replace('<span class="pmeta">','<span class="pmeta"><i class="favmark" aria-label="즐겨찾기">'+ic('star')+'</i>'):h};
 const _pHome=pHome;pHome=function(){_pHome();const fav=favGet().map(byId),rec=recentGet().map(byId).filter(e=>!favHas(e.id));const hero=app.querySelector('.hero');if(!hero||(!fav.length&&!rec.length))return;
  const col=(t,icn,list,empty)=>`<div class="mycol"><div class="sec-h">${ic(icn)}<h2>${t}</h2></div>${list.length?`<div class="pk-list static">${list.slice(0,4).map(rowHTML).join('')}</div>`:`<p class="muted">${empty}</p>`}</div>`;
  hero.insertAdjacentHTML('afterend',`<section class="glass panel sec mine">${col('즐겨찾기','star',fav,'실험 화면의 즐겨찾기 버튼을 누르면 여기에 모여요.')}${rec.length?col('최근 본 실험','clock',rec,''):''}</section>`)};
@@ -7688,7 +7769,7 @@ rowHTML = function(e){
   const pubs = [...new Set((e.src||[]).map(x => x.p))];
   const pr = progOf(e);
   const fav = favHas(e.id);
-  return `<a class="prow" href="#/exp/${e.id}"><span class="pth">${scene(thumbOf(e))}</span><span class="ptx"><b>${fav?'<span class="favmark">★ </span>':''}${esc(e.title)}</b><small>${esc(e.sub)}</small><span class="pmeta">${pubs.map(p=>`<i>${esc(p)}</i>`).join('')}${e.kind?`<i>${esc(e.kind)}</i>`:''}<i>${esc(e.time)}</i>${pr?`<i class="pdone">${pr===100?'완료':'진행 '+pr+'%'}</i>`:''}</span></span>${ic('next')}</a>`;
+  return `<a class="prow" href="#/exp/${e.id}"><span class="pth">${scene(thumbOf(e))}</span><span class="ptx"><b>${fav?'<span class="favmark" aria-label="즐겨찾기">'+ic('star')+'</span>':''}${esc(e.title)}</b><small>${esc(e.sub)}</small><span class="pmeta">${pubs.map(p=>`<i>${esc(p)}</i>`).join('')}${e.kind?`<i>${esc(e.kind)}</i>`:''}<i>${esc(e.time)}</i>${pr?`<i class="pdone">${pr===100?'완료':'진행 '+pr+'%'}</i>`:''}</span></span>${ic('next')}</a>`;
 };
 
 /* ===== 1. Apple-Style Home Page ===== */
@@ -12434,7 +12515,7 @@ route();
     s += `<rect x="${f(x-34)}" y="${f(y-38)}" width="68" height="76" rx="16" fill="url(#${id}c)" stroke="#475569" stroke-width="1.2"/>`;
     s += `<rect x="${f(x-29)}" y="${f(y-33)}" width="58" height="66" rx="13" fill="#0F172A"/>`;
     s += `<text x="${f(x)}" y="${f(y-6)}" text-anchor="middle" font-size="9" font-weight="600" fill="#94A3B8" font-family="sans-serif">심박수 · SpO₂</text>`;
-    s += `<text x="${f(x)}" y="${f(y+14)}" text-anchor="middle" font-size="15" font-weight="700" fill="#F43F5E" font-family="sans-serif">♥ 84 bpm</text>`;
+    s += PICTO_HEART(x-31,y+9,6.5,'#F43F5E')+`<text x="${f(x+8)}" y="${f(y+14)}" text-anchor="middle" font-size="15" font-weight="700" fill="#F43F5E" font-family="sans-serif">84 bpm</text>`;
     return R(s);
   };
 
@@ -15158,9 +15239,9 @@ route();
     /* Central Earth & North Celestial Pole (천구의 북극 P) */
     s += `<line x1="${cx-34}" y1="${cy+54}" x2="${cx+34}" y2="${cy-54}" stroke="#334155" stroke-width="1.3" stroke-dasharray="3 2"/>`;
     s += `<circle cx="${cx}" cy="${cy}" r="8" fill="#2563EB" stroke="#1E3A8A" stroke-width="1"/>`;
-    /* Star ★ on celestial sphere */
+    /* Star on celestial sphere */
     s += `<circle cx="${cx+32}" cy="${cy-28}" r="4.5" fill="#FACC15" stroke="#CA8A04" stroke-width="1"/>`;
-    s += `<text x="${cx+48}" y="${cy-26}" font-size="8.5" font-weight="700" fill="#B45309">★ 천체 (A, h / α, δ)</text>`;
+    s += `<text x="${cx+48}" y="${cy-26}" font-size="8.5" font-weight="700" fill="#B45309">천체 (A, h / α, δ)</text>`;
     s += `<text x="${cx+42}" y="${cy-54}" font-size="8" font-weight="700" fill="#1E293B">천구의 북극</text>`;
     return R(s);
   };
@@ -21512,5 +21593,296 @@ setTimeout(decorate,60);
 })();
 
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- PX-JS-BEGIN -->
+<script>
+/* ===== PIXEL ART RENDER LAYER =====
+   모든 실험 장면·기구 그림을 같은 기하(실제 비율·액면·불꽃·기울기)를 유지한 채 정교한 픽셀 아트로 래스터화한다.
+   - 벡터 장면을 기기 화소 단위 격자(정수 배율)로 앤티에일리어싱 없이 그린다(crispEdges).
+   - 그림마다 적응형 팔레트(중앙값 분할)로 색을 제한하고, 그러데이션은 4×4 베이어 디더로 표현한다.
+   - 바깥 윤곽선(셀아웃)과 1px 그림자 처리로 도트 그림 특유의 또렷한 실루엣을 만든다.
+   - 글자(라벨·눈금 숫자)는 읽기 쉽도록 벡터로 위에 겹쳐 둔다. */
+(function(){
+if(typeof scene!=='function')return;
+const PX=window.PX={on:true,cache:new Map(),queue:new Set(),running:false};
+try{if(localStorage.getItem('labstep-pixel')==='off')PX.on=false}catch(e){}
+const root=document.documentElement;
+root.classList.toggle('px-mode',PX.on);
+
+/* 중력 정렬 보강: 접시류(페트리·시계 접시·홈판·수조·증발 접시)가 공중에 뜨지 않게 받침 위나 실험대 위에 놓는다 */
+const FLAT=new Set(['petri','watch','wellplate','tray','evap']);
+const VESSEL_Y=new Set(['beaker','flask','cyl','volflask','bottle','waste','lamp','calorimeter','balance','hotplate','stand','rack','bath','microscope','spectro','phmeter','centrifuge','multimeter','power','buchner','chrom','mortar','tripod','desiccator']);
+const _bot=new Map();let _msv=null;
+function itemBottom(k,o){const key=k+JSON.stringify(o);if(_bot.has(key))return _bot.get(key);let v=null;
+ try{if(!_msv){_msv=document.createElementNS('http://www.w3.org/2000/svg','svg');_msv.setAttribute('viewBox','0 0 320 200');_msv.style.cssText='position:absolute;left:-9999px;top:0;width:320px;height:200px;visibility:hidden';document.body.appendChild(_msv)}
+  const f=(typeof TS!=='undefined'&&TS[k])||(typeof SV!=='undefined'&&SV[k]);if(f){_msv.innerHTML=f(Object.assign({},o));const b=_msv.getBBox();if(b&&b.height>0)v=b.y+b.height}}catch(e){}
+ _bot.set(key,v);return v}
+function supTop(k,o){const x=o.x??160,y=o.y??180;
+ if(k==='hotplate'){const w=o.w||130;return [x-w/2,x+w/2,y-28]}
+ if(k==='balance')return [x-44,x+52,y-56];
+ if(k==='tripod'){const h=o.h||60;return [x-46,x+46,y-h-4]}
+ if(k==='dtray'){const w=o.w||240,h=o.h||40;return [x-w/2,x+w/2,y-h]}
+ return null}
+function grounded(items){
+ if(!Array.isArray(items)||!items.some(it=>Array.isArray(it)&&FLAT.has(it[0])))return items;
+ if(items.some(it=>Array.isArray(it)&&(it[0]==='microscope'||it[0]==='lamp')))return items;
+ const ys=items.filter(it=>Array.isArray(it)&&VESSEL_Y.has(it[0])&&it[1]&&it[1].y!=null&&!it[1].rot).map(it=>Math.round(it[1].y));
+ const fq={};ys.forEach(y=>fq[y]=(fq[y]||0)+1);
+ const F=ys.length?ys.reduce((a,b)=>(fq[b]>fq[a]||(fq[b]===fq[a]&&b>a))?b:a):186;
+ return items.map(it=>{if(!Array.isArray(it)||!FLAT.has(it[0]))return it;const [k,o0]=it;const o=Object.assign({},o0||{});if(o.rot)return it;
+  const x=o.x??160;const b=itemBottom(k,o);if(b==null)return it;
+  // 다른 접시 위에 겹쳐 놓인 것(예: 수조 위 작은 접시)은 그 접시 바닥 기준으로 그대로 둔다
+  if(items.some(jt=>jt!==it&&Array.isArray(jt)&&FLAT.has(jt[0])&&jt[1]&&Math.abs((jt[1].x??160)-x)<40&&(jt[1].y??150)>(o.y??150)-4&&(jt[1].y??150)<(o.y??150)+30&&(jt[1].w||jt[1].r*2||100)>(o.w||(o.r?o.r*2:100))))return it;
+  let target=F;
+  items.forEach(jt=>{if(!Array.isArray(jt))return;const st=supTop(jt[0],jt[1]||{});if(st&&x>=st[0]-8&&x<=st[1]+8&&st[2]>=b-40)target=Math.min(target,st[2])});
+  const dy=target-b;if(Math.abs(dy)<1.5||dy<-6)return it;
+  o.y=(o.y??150)+dy;return [k,o]})}
+{const _sg=scene;scene=function(items,vb){return _sg(grounded(items),vb)}}
+/* 바닥에 놓이는 기구가 있는 장면 표시(실험대를 그릴지 판단) */
+{const _sc=scene;scene=function(items,vb){const s=_sc(items,vb);try{if(typeof s==='string'&&(items||[]).some(it=>Array.isArray(it)&&GROUND_K.has(it[0])))return s.replace(/^<svg/,'<svg data-pxg="1"')}catch(e){}return s}}
+/* 첫 화면 대표 그림: 4과학 대표 실험 장치(실제 기구)를 실험대 위에 놓은 픽셀 타일 */
+if(typeof heroArt==='function'&&typeof AP!=='undefined'){heroArt=function(){
+ const T=[['chem','화학','burette','적정: 뷰렛 · 삼각 플라스크'],['bio','생명과학','microscope','광학 현미경'],['phys','물리학','hs_pendulum','단진자 · 역학적 에너지'],['earth','지구과학','astro_telescope','천체 망원경']];
+ return `<div class="px-hero" role="img" aria-label="물리학·화학·생명과학·지구과학 대표 실험 장치">${T.filter(t=>AP[t[2]]).map(([k,n,ap,d])=>`<figure class="pxh-t pxh-${k}"><figcaption><b>${n}</b><small>${d}</small></figcaption>${scene(AP[ap].img,'0 0 200 200')}</figure>`).join('')}</div>`}}
+
+const NOBENCH=new Set('pipette micropip dropper forceps rod spatula thermo goggles syringe quadrat scalpel scissors pin cellview view micro skewt_chart weather_map_sat hr_hubble_board seismogram_compass clinometer probe paper txt label arrow loop wire'.split(' '));
+const GROUND_K=new Set(('tray beaker flask cyl volflask bottle waste lamp calorimeter tank balance hotplate stand rack rack5 bath microscope spectro phmeter centrifuge multimeter power buchner chrom mortar cuvette evap tube coins battery sacch flame tripod desiccator watch petri wellplate gel sensorbox dtray mtube burette funnel slide '+(typeof AP!=='undefined'?Object.keys(AP).join(' '):'')).split(' ').filter(k=>k&&!NOBENCH.has(k)));
+const SEL='svg[data-i3s],svg[data-pxart]';
+const BAYER=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5].map(v=>(v+.5)/16-.5);
+
+/* --- CSS 변수 해석(이미지로 그릴 때는 문서 변수를 못 읽으므로) --- */
+function resolveVars(str,el){
+ const cs=getComputedStyle(el);
+ const re=/var\(\s*(--[\w-]+)\s*(?:,\s*([^()]*?(?:\([^()]*\)[^()]*?)*))?\)/g;
+ for(let i=0;i<4&&str.indexOf('var(')>-1;i++)str=str.replace(re,(m,n,fb)=>{const v=cs.getPropertyValue(n).trim();return v||(fb||'').trim()||'#000'});
+ return str}
+
+function hash(s){let h=2166136261>>>0;for(let i=0;i<s.length;i+=1){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(36)+s.length}
+
+/* --- 픽셀 격자 크기: 기기 화소의 정수배 --- */
+function grid(rect){
+ const dpr=Math.min(3,window.devicePixelRatio||1);
+ const devW=rect.width*dpr,devH=rect.height*dpr;
+ const css=rect.width>=520?3:rect.width>=170?2:rect.width>=90?1.5:1;
+ const k=Math.max(1,Math.round(css*dpr));
+ return {k,w:Math.max(8,Math.floor(devW/k)),h:Math.max(8,Math.floor(devH/k))}}
+
+
+/* --- 실제 실험대: 장식용 받침·격자 무대 대신 수지 상판 실험대(원근) --- */
+const BENCH_C={
+ light:{top0:'#DCE1E8',top1:'#F3F5F8',seam:'#B9C1CB',lip:'#FFFFFF',face:'#9EA7B3',faceD:'#8A94A1',cab:'#C3CAD3',gap:'#A5AEB9'},
+ dark:{top0:'#262B33',top1:'#353B45',seam:'#14171B',lip:'#59616D',face:'#16191E',faceD:'#0F1114',cab:'#1E2228',gap:'#121418'}};
+function benchMarkup(sv){
+ const vb=sv.viewBox&&sv.viewBox.baseVal;if(!vb||!vb.width)return null;
+ let back=null,front=null,tool=false;
+ const st=sv.querySelector(':scope > .i3-stage'),ped=sv.querySelector(':scope > .i3-ped'),main=sv.querySelector(':scope > g.i3-main');
+ const nobench=sv.hasAttribute('data-i3n');
+ if(nobench&&!sv.hasAttribute('data-pxg'))return '';
+ if(st&&!nobench){const h=st.innerHTML;const fm=h.match(/<path d="M(-?[\d.]+) (-?[\d.]+)H(-?[\d.]+)" stroke="#FFFFFF"/);if(fm){front=+fm[2];back=front-40;
+  // 기구 바닥이 상판 앞 모서리보다 아래로 내려오지 않도록(라벨·화살표 제외한 기구 경계)
+  if(main){let lo=-1e9;[...main.children].forEach(ch=>{if(ch.querySelector('.i3-label,.i3-arrow')||/mo-(label|txt|arrow|view|cellview|micro)\b/.test(ch.getAttribute('class')||''))return;try{const bb=ch.getBBox();if(bb.width>0&&bb.height>0)lo=Math.max(lo,bb.y+bb.height)}catch(e){}});if(lo>front-2&&lo<front+40){front=lo+3;back=front-40}}}}
+ else if(main){if(ped&&!sv.hasAttribute('data-pxg'))return '';let b;try{b=main.getBBox()}catch(e){}if(b){const bot=b.y+b.height;tool=!!ped;const d=tool?Math.max(5,Math.min(b.height,b.width*1.4)*.1):Math.max(10,b.height*.16);back=bot-d;front=bot+d*.8}}
+ if(front===null)return '';
+ const C=BENCH_C[root.getAttribute('data-theme')==='dark'?'dark':'light'];
+ const X0=vb.x-4,X1=vb.x+vb.width+4,YB=vb.y+vb.height+4,W=X1-X0;
+ const th=Math.max(3,(front-back)*(tool?.32:.2));
+ const f=v=>(+v).toFixed(1);
+ let o=`<g><defs><linearGradient id="pxbt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.top0}"/><stop offset="1" stop-color="${C.top1}"/></linearGradient></defs>`;
+ o+=`<rect x="${f(X0)}" y="${f(back)}" width="${f(W)}" height="${f(front-back)}" fill="url(#pxbt)"/>`;
+ o+=`<rect x="${f(X0)}" y="${f(back)}" width="${f(W)}" height="1.3" fill="${C.seam}"/>`;
+ o+=`<rect x="${f(X0)}" y="${f(front-1.2)}" width="${f(W)}" height="1.4" fill="${C.lip}"/>`;
+ o+=`<rect x="${f(X0)}" y="${f(front+.2)}" width="${f(W)}" height="${f(th)}" fill="${C.face}"/>`;
+ o+=`<rect x="${f(X0)}" y="${f(front+.2+th-1.2)}" width="${f(W)}" height="1.2" fill="${C.faceD}"/>`;
+ const cy=front+.2+th;if(YB>cy){o+=`<rect x="${f(X0)}" y="${f(cy)}" width="${f(W)}" height="${f(YB-cy)}" fill="${C.cab}"/>`;
+  // 수납장 문 틈(실험대 하부장)
+  const n=Math.max(2,Math.round(W/110));for(let i=1;i<n;i++){const x=X0+W*i/n;o+=`<rect x="${f(x-.6)}" y="${f(cy)}" width="1.2" height="${f(YB-cy)}" fill="${C.gap}"/>`}}
+ return o+'</g>'}
+/* --- 래스터용 복제본 만들기 --- */
+function rasterMarkup(sv,w,h){
+ const c=sv.cloneNode(true);
+ c.removeAttribute('class');c.removeAttribute('style');
+ c.setAttribute('xmlns','http://www.w3.org/2000/svg');
+ c.setAttribute('width',w);c.setAttribute('height',h);
+ c.setAttribute('shape-rendering','crispEdges');
+ if(!c.getAttribute('viewBox')){const b=sv.viewBox&&sv.viewBox.baseVal;if(b&&b.width)c.setAttribute('viewBox',`${b.x} ${b.y} ${b.width} ${b.height}`)}
+ // 글자는 위에 벡터로 겹치므로 빼고, CSS로만 숨겨지던 움직임 요소도 뺀다
+ const bm=benchMarkup(sv);
+ if(bm!==null){c.querySelectorAll(':scope > .i3-stage,:scope > .i3-ped').forEach(n=>n.remove());
+  const host=document.createElementNS('http://www.w3.org/2000/svg','g');host.innerHTML=bm;const first=c.querySelector(':scope > g.i3-main')||c.firstChild;c.insertBefore(host,first)}
+ c.querySelectorAll('text,title,.mo-fall,.mo-ripple,.mo-sweep,.mo-lens').forEach(n=>n.remove());
+ // 흐림 필터(그림자·반사광)는 도트 그림에 맞지 않으므로 제거
+ c.querySelectorAll('filter').forEach(n=>n.remove());
+ c.querySelectorAll('[filter]').forEach(n=>n.removeAttribute('filter'));
+ c.querySelectorAll('[style]').forEach(n=>{const s=n.getAttribute('style');if(/animation|--d:/.test(s))n.removeAttribute('style')});
+ return resolveVars(new XMLSerializer().serializeToString(c),sv)}
+
+function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error('img'));i.src=src})}
+
+/* --- 글자 가독성: 글자 뒤 도트의 밝기를 재서 대비가 부족하면 글자색을 바꾼다 --- */
+function relL(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)}
+function cr(a,b){const x=Math.max(a,b),y=Math.min(a,b);return (x+.05)/(y+.05)}
+function fixText(sv,ent){
+ const r=sv.getBoundingClientRect();if(!r.width)return;
+ sv.querySelectorAll('text').forEach(t=>{
+  if(t.dataset.pxf0===undefined)t.dataset.pxf0=t.style.fill||'';
+  t.style.fill=t.dataset.pxf0;t.style.paintOrder='';t.style.stroke='';t.style.strokeWidth='';
+  const b=t.getBoundingClientRect();if(!b.width)return;
+  const x0=Math.max(0,Math.floor((b.left-r.left)/r.width*ent.w)),x1=Math.min(ent.w-1,Math.ceil((b.right-r.left)/r.width*ent.w));
+  const y0=Math.max(0,Math.floor((b.top-r.top)/r.height*ent.h)),y1=Math.min(ent.h-1,Math.ceil((b.bottom-r.top)/r.height*ent.h));
+  if(x1<x0||y1<y0)return;let sum=0,n=0;
+  for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){sum+=relL(ent.L[y*ent.w+x]);n++}
+  if(!n)return;const bgL=sum/n;
+  const m=(getComputedStyle(t).fill||'').match(/\d+(\.\d+)?/g);if(!m)return;
+  const tl=.2126*relL(+m[0])+.7152*relL(+m[1])+.0722*relL(+m[2]);
+  if(cr(tl,bgL)>=3)return;
+  const dark=.012,light=.9;
+  const useDark=cr(dark,bgL)>=cr(light,bgL);
+  t.style.fill=useDark?'#141A26':'#F3F6FA';
+  t.style.paintOrder='stroke';t.style.stroke=useDark?'rgba(255,255,255,.55)':'rgba(0,0,0,.45)';t.style.strokeWidth='2px';t.style.strokeLinejoin='round'})}
+
+/* --- 중앙값 분할 팔레트 --- */
+function medianCut(px,n){
+ // px: Uint32 packed rgb list(중복 포함, 표본)
+ let boxes=[px];
+ while(boxes.length<n){
+  let bi=-1,bs=-1,bc=0;
+  boxes.forEach((b,i)=>{if(b.length<2)return;let mn=[255,255,255],mx=[0,0,0];for(let j=0;j<b.length;j++){const v=b[j];const r=v>>16&255,g=v>>8&255,bl=v&255;if(r<mn[0])mn[0]=r;if(r>mx[0])mx[0]=r;if(g<mn[1])mn[1]=g;if(g>mx[1])mx[1]=g;if(bl<mn[2])mn[2]=bl;if(bl>mx[2])mx[2]=bl}
+   const rg=[(mx[0]-mn[0])*1.0,(mx[1]-mn[1])*1.2,(mx[2]-mn[2])*.9];const ch=rg.indexOf(Math.max(...rg));const sc=rg[ch]*Math.sqrt(b.length);if(sc>bs){bs=sc;bi=i;bc=ch}});
+  if(bi<0||bs<=0)break;
+  const b=boxes[bi];const sh=[16,8,0][bc];b.sort((x,y)=>((x>>sh)&255)-((y>>sh)&255));
+  const m=b.length>>1;boxes.splice(bi,1,b.slice(0,m),b.slice(m))}
+ return boxes.filter(b=>b.length).map(b=>{
+  // 상자 대표색: 가장 많이 쓰인 색(평면 채색 색을 정확히 보존)
+  const cnt=new Map();let best=b[0],bn=0;for(const v of b){const c=(cnt.get(v)||0)+1;cnt.set(v,c);if(c>bn){bn=c;best=v}}
+  if(bn/b.length<.2){let r=0,g=0,bl=0;for(const v of b){r+=v>>16&255;g+=v>>8&255;bl+=v&255}const L=b.length;return [r/L|0,g/L|0,bl/L|0]}
+  return [best>>16&255,best>>8&255,best&255]})}
+
+/* --- 래스터 → 도트 그림 --- */
+function pixelate(img,w,h,bg){
+ const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+ const ctx=cv.getContext('2d',{willReadFrequently:true});
+ ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,w,h);ctx.drawImage(img,0,0,w,h);
+ const id=ctx.getImageData(0,0,w,h),d=id.data,N=w*h;
+ const A=new Uint8Array(N);
+ // 1) 반투명 화소는 바탕색과 합성해 불투명 도트로, 거의 투명한 화소는 비움
+ for(let i=0;i<N;i++){const o=i*4,a=d[o+3];
+  if(a<22){A[i]=0;continue}A[i]=1;
+  if(a<255){const t=a/255;d[o]=d[o]*t+bg[0]*(1-t);d[o+1]=d[o+1]*t+bg[1]*(1-t);d[o+2]=d[o+2]*t+bg[2]*(1-t)}d[o+3]=255}
+ // 2) 적응형 팔레트(그림 크기에 맞춰 색 수 제한)
+ const sample=[];const step=Math.max(1,Math.floor(N/24000));
+ for(let i=0;i<N;i+=step)if(A[i]){const o=i*4;sample.push((d[o]<<16)|(d[o+1]<<8)|d[o+2])}
+ if(!sample.length)return cv;
+ const ncol=w*h>30000?40:w*h>9000?30:20;
+ const pal=medianCut(sample,ncol);
+ const near=new Map();
+ const nearest=(r,g,b)=>{const key=((r>>2)<<12)|((g>>2)<<6)|(b>>2);let v=near.get(key);if(v!==undefined)return v;let bi=0,bd=1e9;
+  for(let j=0;j<pal.length;j++){const p=pal[j],dr=r-p[0],dg=g-p[1],db=b-p[2];const dd=dr*dr*.3+dg*dg*.59+db*db*.11;if(dd<bd){bd=dd;bi=j}}near.set(key,bi);return bi};
+ // 3) 순서 디더(그러데이션만 계단 무늬가 되도록 약하게)
+ const Q=new Int16Array(N).fill(-1);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;if(!A[i])continue;const o=i*4;const t=BAYER[(y&3)*4+(x&3)]*11;
+  const r=Math.max(0,Math.min(255,d[o]+t)),g=Math.max(0,Math.min(255,d[o+1]+t)),b=Math.max(0,Math.min(255,d[o+2]+t));
+  // 원래 색이 팔레트에 정확히 있으면 디더 없이(평면 채색 보존)
+  const e=nearest(d[o],d[o+1],d[o+2]),pe=pal[e];
+  Q[i]=(Math.abs(pe[0]-d[o])+Math.abs(pe[1]-d[o+1])+Math.abs(pe[2]-d[o+2])<6)?e:nearest(r,g,b)}
+ for(let i=0;i<N;i++){const o=i*4;if(!A[i]){d[o+3]=0;continue}const p=pal[Q[i]];d[o]=p[0];d[o+1]=p[1];d[o+2]=p[2]}
+ // 4) 셀아웃: 바깥(빈칸)과 맞닿은 테두리 도트를 한 단계 어둡게 → 또렷한 실루엣
+ const edge=new Uint8Array(N);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){const i=y*w+x;if(!A[i])continue;
+  if(x===0||y===0||x===w-1||y===h-1||!A[i-1]||!A[i+1]||!A[i-w]||!A[i+w])edge[i]=1}
+ for(let i=0;i<N;i++)if(edge[i]){const o=i*4;const L=d[o]*.3+d[o+1]*.59+d[o+2]*.11;const f=L>150?.72:L>70?.8:.9;d[o]=d[o]*f;d[o+1]=d[o+1]*f;d[o+2]=d[o+2]*f*1.04>255?255:d[o+2]*f*1.04}
+ ctx.putImageData(id,0,0);
+ const L=new Uint8Array(N);for(let i=0;i<N;i++){const o=i*4;L[i]=A[i]?(d[o]*.299+d[o+1]*.587+d[o+2]*.114):(bg[0]*.299+bg[1]*.587+bg[2]*.114)}
+ cv._lum=L;return cv}
+
+function bgOf(sv){
+ const host=sv.closest('.fig,.thumb,.tv,.vis,.hero-art,.pth,.art,.mi-vis,.xcard,.tcard')||sv.parentElement;
+ const v=getComputedStyle(root).getPropertyValue('--px-bg').trim()||'#EEF2F8';
+ const m=v.match(/^#?([0-9a-f]{6})$/i);if(m){const n=parseInt(m[1],16);return [n>>16,n>>8&255,n&255]}return [238,242,248]}
+
+function ready(sv){
+ if(sv.getAttribute('data-fit')==='1')return false;
+ if(sv.hasAttribute('data-i3tool')&&!sv.hasAttribute('data-i3p'))return false;
+ if(sv.hasAttribute('data-i3n')&&!sv.hasAttribute('data-i3p'))return false;
+ return true}
+
+async function process(sv){
+ if(!PX.on||!sv.isConnected)return;
+ const r=sv.getBoundingClientRect();if(r.width<6||r.height<6)return;
+ if(!ready(sv)){setTimeout(()=>enqueue(sv),180);return}
+ const g=grid(r);
+ const key0=sv.__pxsrc||(sv.__pxsrc=sv.outerHTML.length+':'+hash(sv.innerHTML)+':'+(sv.getAttribute('viewBox')||''));
+ const theme=root.getAttribute('data-theme')||'light';
+ const key=key0+'|'+g.w+'x'+g.h+'|'+theme;
+ if(sv.__pxkey===key)return;
+ let url=PX.cache.get(key);
+ if(!url){
+  try{
+   const mk=rasterMarkup(sv,g.w,g.h);
+   const img=await loadImg('data:image/svg+xml;charset=utf-8,'+encodeURIComponent(mk));
+   const cv=pixelate(img,g.w,g.h,bgOf(sv));
+   url={u:cv.toDataURL('image/png'),L:cv._lum,w:g.w,h:g.h};
+   if(PX.cache.size>400)PX.cache.delete(PX.cache.keys().next().value);
+   PX.cache.set(key,url);
+  }catch(e){sv.classList.add('px-fail');return}
+ }
+ if(!sv.isConnected)return;
+ sv.style.backgroundImage=`url("${url.u}")`;
+ try{fixText(sv,url)}catch(e){}
+ sv.__pxkey=key;sv.classList.add('px-on');sv.classList.remove('px-fail')}
+
+function pump(){
+ if(PX.running)return;PX.running=true;
+ const next=()=>{
+  const it=PX.queue.values().next();
+  if(it.done){PX.running=false;return}
+  const sv=it.value;PX.queue.delete(sv);
+  process(sv).catch(()=>{}).finally(()=>{(window.requestIdleCallback||setTimeout)(next,{timeout:60})})};
+ next()}
+function enqueue(sv){if(!PX.on)return;PX.queue.add(sv);pump()}
+
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)enqueue(e.target)}),{rootMargin:'400px 0px'}):null;
+function scan(){
+ if(!PX.on)return;
+ document.querySelectorAll(SEL).forEach(sv=>{
+  if(sv.closest('[data-px-skip]'))return;
+  if(!sv.__pxobs){sv.__pxobs=1;sv.classList.add('px-t');if(io)io.observe(sv);else enqueue(sv)}
+  else if(sv.__pxkey){/* 크기 변화 확인 */const r=sv.getBoundingClientRect();if(r.width>6){const g=grid(r);if(sv.__pxkey.indexOf('|'+g.w+'x'+g.h+'|')<0)enqueue(sv)}}
+ })}
+new MutationObserver(()=>{clearTimeout(PX._t);PX._t=setTimeout(scan,140)}).observe(document.body,{childList:true,subtree:true});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{document.querySelectorAll(SEL).forEach(sv=>{if(sv.__pxkey){const b=sv.getBoundingClientRect();if(b.width>6&&b.top<innerHeight+400&&b.bottom>-400)enqueue(sv)}})},220)});
+
+/* 테마가 바뀌면 다시 그리기 */
+new MutationObserver(()=>{document.querySelectorAll(SEL).forEach(sv=>{sv.__pxkey=null;sv.__pxsrc=null;const b=sv.getBoundingClientRect();if(b.width>6&&b.top<innerHeight+400&&b.bottom>-400)enqueue(sv)})}).observe(root,{attributes:true,attributeFilter:['data-theme']});
+
+PX.set=function(on){PX.on=!!on;try{localStorage.setItem('labstep-pixel',on?'on':'off')}catch(e){}root.classList.toggle('px-mode',PX.on);
+ document.querySelectorAll(SEL).forEach(sv=>{sv.__pxkey=null;if(!PX.on){sv.classList.remove('px-on');sv.style.backgroundImage=''}});if(PX.on){document.querySelectorAll(SEL).forEach(sv=>{sv.__pxobs=0});scan()}};
+
+/* 안전장치: 오래 처리되지 않은 그림은 원래 벡터로 보여 줌 */
+setInterval(()=>{if(!PX.on)return;document.querySelectorAll('svg.px-t:not(.px-on):not(.px-fail)').forEach(sv=>{const b=sv.getBoundingClientRect();if(b.width>6&&b.top<innerHeight&&b.bottom>0){sv.__pxwait=(sv.__pxwait||0)+1;if(sv.__pxwait>6)sv.classList.add('px-fail');else enqueue(sv)}})},1000);
+
+if(typeof TSCACHE!=='undefined'&&TSCACHE.clear)TSCACHE.clear();
+if(typeof route==='function')route();
+setTimeout(scan,200);
+})();
+</script>
+<!-- PX-JS-END -->
 </body>
 </html>
